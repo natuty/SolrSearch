@@ -1,0 +1,12 @@
+.idea/
+.mvc
+build
+out/
+.data
+build/
+.gradle/
+*.iml
+~**
+classes/
+/service/
+.log

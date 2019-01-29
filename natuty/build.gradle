@@ -1,0 +1,67 @@
+apply plugin: 'kotlin'
+apply plugin: 'java'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'io.spring.dependency-management'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
+bootRun {
+    systemProperty 'spring.profiles.active', 'dev'
+}
+configurations {
+    providedRuntime
+}
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-cache')
+    compile('org.springframework.boot:spring-boot-starter-integration')
+    compile('org.springframework.boot:spring-boot-starter-amqp')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-integration')
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin"){
+        force=true
+    }
+    compile (group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17')
+    /*logback日志插件*/
+    compile("net.logstash.logback:logstash-logback-encoder:4.11")
+    compile('org.springframework.integration:spring-integration-stream')
+    compile('org.springframework.boot:spring-boot-starter-websocket')
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compile("org.jetbrains.kotlin:kotlin-reflect")
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile ('junit:junit:4.12')
+
+    /*solr依赖*/
+    compile('org.springframework.boot:spring-boot-starter-data-solr')
+    compileOnly("org.projectlombok:lombok:1.18.2")
+
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}

@@ -1,0 +1,61 @@
+package com.natuty.entity
+
+import java.util.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+
+/**
+ * 项目
+ */
+@Entity
+data class Search(
+        @Id
+        @GeneratedValue
+        var id: Long = 0,
+
+        /**
+         *文件名
+         */
+        @Column()
+        var filename: String = "",
+
+        /**
+         *文件id
+         */
+        @Column()
+        var fileId: String = "",
+
+        /**
+         *文件路径(相对路径) pdfDir + File.separatorChar + path relatively
+         */
+        @Column()
+        var relativePath: String = "",
+
+        /**
+         *添加时间
+         */
+        @Column()
+        var addTime: Date = Date(),
+
+        /**
+         *是否已经建立索引 true已建立
+         */
+        @Column()
+        var isIndex: Boolean = false,
+
+        /**
+         * 文件大小
+         */
+        @Column()
+        var fsize: Long = 0
+
+)
+
+enum class SelectType(val remark: String) {
+        FilenameOrContent("文件名or内容"),
+        FilenameAndContent("文件名and内容"),
+        Filename("文件名"),
+        Content("内容"),
+}

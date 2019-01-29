@@ -1,0 +1,30 @@
+package com.natuty.service
+
+import com.natuty.dao.defaultPageSize
+import com.natuty.entity.Search
+import com.natuty.entity.SelectType
+import org.apache.lucene.index.IndexWriter
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
+import org.springframework.data.jpa.domain.Specification
+import org.springframework.data.domain.Page
+import org.springframework.web.multipart.MultipartFile
+import java.io.File
+import java.util.ArrayList
+
+interface ApiSearchServiceI{
+    fun get(id:Long): Search?
+    fun save(search:Search):Search
+    fun delete(id: Long)
+    fun delete(ids:List<Long>)
+    fun deleteAll()
+    fun query(spec: Specification<Search>?=null, pageable: Pageable = PageRequest(0,defaultPageSize)): Page<Search>
+    fun getFirstByFileId(fileId: String): Search?
+    fun getAllByIsIndex(isIndex: Boolean): List<Search>
+    fun findByIdIn(ids: List<Long>, pageable: Pageable): Page<Search>
+
+    fun doSearch(selectType: SelectType?, searchWord: String? = "", pageable: Pageable): Any
+    fun saveFile(file: MultipartFile, fileId: String): Search?
+    fun getFile(fileId: String):Any?
+    fun pdfIndex(writer: IndexWriter, pdfDir:String, fileId: String): Search?
+}
