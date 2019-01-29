@@ -17,6 +17,7 @@ import org.springframework.data.solr.core.query.result.SolrResultPage;
 import org.springframework.stereotype.Service;
 import org.slf4j.LoggerFactory
 import org.apache.commons.math3.stat.descriptive.summary.Product
+import org.springframework.data.solr.core.query.result.HighlightPage
 import org.springframework.transaction.annotation.Transactional
 
 
@@ -32,7 +33,7 @@ class ApiSearchServiceImpl(
         if(isExist){
             throw BusinessException("索引已存在")
         }else{
-            val search = searchRepository.save(Search(filename = filename, text = text))
+            val search = searchRepository.save(Search(id = id, filename = filename, text = text))
             return search
         }
     }
@@ -46,19 +47,19 @@ class ApiSearchServiceImpl(
         }
     }
 
-    override fun findByFilename(filename: String, page: Pageable): Page<Search>  {
+    override fun findByFilename(filename: String, page: Pageable): HighlightPage<Search>  {
         return searchRepository.findByFilename(filename, page)
     }
 
-    override fun findByText(text: String, page: Pageable): Page<Search> {
+    override fun findByText(text: String, page: Pageable): HighlightPage<Search> {
         return searchRepository.findByText(text, page)
     }
 
-    override fun findByKeywords(keywords: String, page: Pageable): Page<Search> {
+    override fun findByKeywords(keywords: String, page: Pageable): HighlightPage<Search> {
         return searchRepository.findByKeywords(keywords, page)
     }
 
-    override fun findByFilenameAndText(filename: String, text: String, page: Pageable): Page<Search>{
+    override fun findByFilenameAndText(filename: String, text: String, page: Pageable): HighlightPage<Search> {
         return searchRepository.findByFilenameAndText(filename = filename, text = text, page = page)
     }
 }

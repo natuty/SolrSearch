@@ -20,6 +20,8 @@ import java.util.regex.Pattern
 import org.apache.solr.common.SolrInputDocument
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
+import org.springframework.data.solr.core.query.result.HighlightPage
+import org.springframework.data.solr.core.query.result.SolrResultPage
 import java.lang.Exception
 
 
@@ -75,7 +77,7 @@ class ApiSearchController(
     @RequestMapping("/searchIndex")
     fun searchIndex(keyword: String, type:Type, current: Int? = 0, pageSize: Int? = 10): Any {
         var status = true
-        var pageList: Page<Search>? = null
+        var pageList: HighlightPage<Search>? = null
 
         var cur = (current ?: 0) - 1
         var page = pageSize ?: 10
@@ -93,14 +95,50 @@ class ApiSearchController(
             }
         }catch (e: Exception){
             e.printStackTrace()
-            status = false
+            return hashMapOf("data" to "", "status" to false)
         }
 
-        val data = pageList?:""
-        val rt = hashMapOf(
-                "data" to data,
+
+        val highlighted = pageList.highlighted
+        var highLightMap: HashMap<String,String> = hashMapOf()
+        highlighted.forEach {
+            var abstract = ""
+            val entity = it.entity
+            val id = entity.id
+            val text = entity.text
+
+            val highLights = it.highlights
+            if(highLights.size > 0){
+                val snipplets = highLights[0].snipplets
+                if(snipplets.size > 0){
+                    abstract = snipplets[0]
+                }
+            }
+
+            if(abstract == ""){
+                if(text.length > 200){
+                    abstract = text.substring(0,200)
+                }else{
+                    abstract = text
+                }
+            }
+
+            if(!highLightMap.containsKey(id)){
+                highLightMap.put(id, abstract)
+            }
+        }
+
+        val contentList = pageList.content.map {
+            val abstract = highLightMap.get(it.id)?: ""
+            hashMapOf(
+                    "id" to it.id,
+                    "filename" to it.filename,
+                    "abstract" to abstract
+            )
+        }
+        return hashMapOf(
+                "data" to contentList,
                 "status" to status
         )
-        return rt
     }
 }
