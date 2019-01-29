@@ -8,5 +8,6 @@ interface SearchInterface {
         const val ID_FIELD_NAME = "id"
         const val FILENAME_FIELD_NAME = "filename"
         const val TEXT_FIELD_NAME = "text"
+        const val KEYWORDS_FIELD_NAME = "keywords"
     }
 }

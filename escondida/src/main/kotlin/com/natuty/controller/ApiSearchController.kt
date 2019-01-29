@@ -1,6 +1,8 @@
 package com.natuty.controller
 
+import com.natuty.entity.Search
 import com.natuty.exception.BusinessException
+import com.natuty.entity.Type
 import com.natuty.service.ApiSearchServiceI
 import org.apache.solr.client.solrj.SolrQuery
 import org.apache.solr.client.solrj.impl.HttpSolrClient
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile
 import org.slf4j.LoggerFactory
 import java.util.regex.Pattern
 import org.apache.solr.common.SolrInputDocument
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import java.lang.Exception
 
@@ -29,45 +32,75 @@ class ApiSearchController(
     val log = LoggerFactory.getLogger(this.javaClass)
 
     /**
-     * 添加索引
+     * 1. 添加索引
      */
     @RequestMapping("/addIndex")
     fun addIndex(id: String, filename: String, text: String): Any {
         var status = true
-        val rt = hashMapOf(
-                "status" to status
-        )
-        return rt
-    }
-
-    @RequestMapping("/test")
-    fun test(id: String): Any {
-        var status = true
         try {
-            return apiSearchServiceI.findById(id)
+            val search = apiSearchServiceI.save(id, filename, text)
         }catch (e: Exception){
             e.printStackTrace()
             status = false
         }
+
         val rt = hashMapOf(
                 "status" to status
         )
         return rt
     }
 
-    @RequestMapping("/test2")
-    fun test2(filename: String): Any {
+    /**
+     * 2. 删除索引
+     */
+    @RequestMapping("/deleteIndex")
+    fun deleteIndex(id: String): Any {
         var status = true
         try {
-            return apiSearchServiceI.test(filename = filename, page = PageRequest(0,500))
+            apiSearchServiceI.delete(id = id)
         }catch (e: Exception){
             e.printStackTrace()
             status = false
         }
+
         val rt = hashMapOf(
                 "status" to status
         )
         return rt
     }
 
+    /**
+     * 3. 检索
+     */
+    @RequestMapping("/searchIndex")
+    fun searchIndex(keyword: String, type:Type, current: Int? = 0, pageSize: Int? = 10): Any {
+        var status = true
+        var pageList: Page<Search>? = null
+
+        var cur = (current ?: 0) - 1
+        var page = pageSize ?: 10
+        if (cur < 0) cur = 0
+        if (page < 0) page = 10
+        else if (page > 560) page = 100
+
+        try {
+            val page = PageRequest(cur, page)
+            when(type){
+                Type.Filename -> { pageList =  apiSearchServiceI.findByFilename(filename = keyword, page = page) }
+                Type.Text -> { pageList =  apiSearchServiceI.findByText(text = keyword, page = page) }
+                Type.FilenameOrText -> { pageList = apiSearchServiceI.findByKeywords(keywords = keyword, page = page)}
+                Type.FilenameAndText -> { pageList = apiSearchServiceI.findByFilenameAndText(filename = keyword, text = keyword, page = page) }
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            status = false
+        }
+
+        val data = pageList?:""
+        val rt = hashMapOf(
+                "data" to data,
+                "status" to status
+        )
+        return rt
+    }
 }
