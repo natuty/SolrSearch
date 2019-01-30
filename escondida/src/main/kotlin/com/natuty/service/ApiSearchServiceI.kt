@@ -8,7 +8,7 @@ import org.springframework.data.solr.core.query.result.HighlightPage
 import org.springframework.data.solr.core.query.result.SolrResultPage
 
 interface ApiSearchServiceI{
-    fun save(id: String, filename: String, text: String): Search?
+    fun save(search: Search): Search?
     fun delete(id: String)
     fun get(id: String):Search?
     fun findByFilename(filename: String, page: Pageable): HighlightPage<Search>

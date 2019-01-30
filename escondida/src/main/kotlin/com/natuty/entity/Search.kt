@@ -17,13 +17,13 @@ import org.springframework.data.solr.core.mapping.SolrDocument
 data class Search(
         @Id
         @Indexed(ID_FIELD_NAME)
-        var id: String = "",
+        var id: String,
 
         @Indexed(FILENAME_FIELD_NAME)
-        var filename: String = "",
+        var filename: String,
 
         @Indexed(TEXT_FIELD_NAME)
-        var text: String = "",
+        var text: String,
 
         @Indexed(KEYWORDS_FIELD_NAME)
         var keywords: String = ""

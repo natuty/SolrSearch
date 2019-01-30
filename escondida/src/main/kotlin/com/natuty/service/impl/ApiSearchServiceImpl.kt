@@ -19,12 +19,13 @@ class ApiSearchServiceImpl(
 ) : ApiSearchServiceI {
     val log = LoggerFactory.getLogger(ApiSearchServiceImpl::class.java)
 
-    override fun save(id: String, filename: String, text: String):Search? {
+    override fun save(search: Search):Search? {
+        val id = search.id
         val isExist = searchRepository.existsById(id)
         if(isExist){
             throw SearchIdIsExistException()
         }else{
-            val search = searchRepository.save(Search(id = id, filename = filename, text = text))
+            val search = searchRepository.save(search)
             return search
         }
     }

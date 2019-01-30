@@ -1,33 +1,36 @@
 package com.natuty.controller
 
+import com.natuty.entity.Search
 import com.natuty.entity.Type
 import com.natuty.exception.SearchIdIsNotExistException
 import com.natuty.service.ApiSearchServiceI
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
 import org.springframework.data.domain.PageRequest
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("/api/apisearch")
+@RequestMapping("api")
 class ApiSearchController(
         val apiSearchServiceI: ApiSearchServiceI
 ) {
 
     // 1. 添加索引
-    @RequestMapping("/addIndex")
-    fun addIndex(id: String, filename: String, text: String) {
-        apiSearchServiceI.save(id, filename, text)
+    @RequestMapping(value = ["/index"], method = [RequestMethod.POST])
+    fun  addIndex(search: Search):Any? {
+        apiSearchServiceI.save(search)
+        return hashMapOf("status" to true)
     }
 
     // 2. 删除索引
-    @RequestMapping("/deleteIndex")
-    fun deleteIndex(id: String) {
+    @RequestMapping(value = ["/index/{id:\\d+}"], method = [RequestMethod.DELETE])
+    fun deleteIndex(@PathVariable("id")id: String):Any? {
+
         apiSearchServiceI.delete(id = id)
+        return hashMapOf("status" to true)
     }
 
     // 3. 检索
-    @RequestMapping("/searchIndex")
+    @RequestMapping(value = ["/index"], method = [RequestMethod.PATCH])
     fun searchIndex(keyword: String, type:Type, current: Int? = 0, pageSize: Int? = 10): Any? {
 
         var cur = (current ?: 0) - 1
@@ -77,8 +80,8 @@ class ApiSearchController(
     }
 
     // 4. 获取索引
-    @RequestMapping("/getIndex")
-    fun addIndex(id: String):Any? {
+    @RequestMapping(value = ["/index/{id:\\d+}"], method = [RequestMethod.GET])
+    fun get(@PathVariable("id")id: String):Any? {
         return apiSearchServiceI.get(id = id)?: throw SearchIdIsNotExistException()
     }
 }
