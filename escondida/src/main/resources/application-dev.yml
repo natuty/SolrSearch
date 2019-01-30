@@ -12,7 +12,7 @@ spring:
     multipart:
       max-file-size: 100MB
   solr:
-    host: 'http://localhost:8983/solr'
+    host: 'http://116.56.134.166:8983/solr'
 server:
   port: 9000
   tomcat:

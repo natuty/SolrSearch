@@ -12,16 +12,16 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface SearchRepository: SolrCrudRepository<Search, String> {
-    @Highlight(prefix = "", postfix = "", fields = arrayOf("text"), fragsize=200)
+    @Highlight(prefix = "<b>", postfix = "</b>", fields = arrayOf("text"), fragsize=200)
     fun findByText(text: String, page: Pageable): HighlightPage<Search>
 
-    @Highlight(prefix = "", postfix = "", fields = arrayOf("text"), fragsize=200)
+    @Highlight(prefix = "<b>", postfix = "</b>", fields = arrayOf("text"), fragsize=200)
     fun findByFilename(filename: String, page: Pageable): HighlightPage<Search>
 
-    @Highlight(prefix = "", postfix = "", fields = arrayOf("text"), fragsize=200)
+    @Highlight(prefix = "<b>", postfix = "</b>", fields = arrayOf("text"), fragsize=200)
     fun findByKeywords(keywords: String, page: Pageable): HighlightPage<Search>
 
-    @Highlight(prefix = "", postfix = "", fields = arrayOf("text"), fragsize=200)
+    @Highlight(prefix = "<b>", postfix = "</b>", fields = arrayOf("text"), fragsize=200)
     fun findByFilenameAndText(filename: String, text: String, page: Pageable): HighlightPage<Search>
 }
 

@@ -1,3 +1,38 @@
+#spring:
+#  profiles:
+#    active: prod
+#  thymeleaf:
+#    cache: false
+#  http:
+#    encoding:
+#      force: true
+#      charset: UTF-8
+#      enabled: true
+#  servlet:
+#    multipart:
+#      max-file-size: 100MB
+#  solr:
+#    host: 'http://116.56.134.166:8983/solr'
+#server:
+#  port: 9000
+#  tomcat:
+#    accesslog:
+#      enabled: true
+#    protocol-header: x-forwarded-proto
+#    remote-ip-header: x-forwarded-for
+#    background-processor-delay: 30
+#    uri-encoding: utf-8
+#logging:
+#  config: "classpath:jsonLogger.xml"
+#  level:
+#    org.springframework.web: ERROR
+#    org.springframework.security: ERROR
+#    com.natuty: DEBUG
+#debug: false
+
+
+
+
 spring:
   profiles:
     active: prod
@@ -12,23 +47,24 @@ spring:
     multipart:
       max-file-size: 100MB
   solr:
-    host: 'http://localhost:8983/solr'
+    host: 'http://116.56.134.166:8983/solr'
 server:
   port: 9000
-  session:
-    timeout: 7200
-  context-path: /
   tomcat:
     accesslog:
       enabled: true
     protocol-header: x-forwarded-proto
     remote-ip-header: x-forwarded-for
-    background-processor-delay: 30
     uri-encoding: utf-8
 logging:
-  config: "classpath:jsonLogger.xml"
   level:
     org.springframework.web: ERROR
     org.springframework.security: ERROR
+    org.hibernate: ERROR
     com.natuty: DEBUG
 debug: false
+
+
+
+
+

@@ -22,7 +22,7 @@ class ApiSearchController(
     }
 
     // 2. 删除索引
-    @RequestMapping(value = ["/index/{id:\\d+}"], method = [RequestMethod.DELETE])
+    @RequestMapping(value = ["/index/{id:.+}"], method = [RequestMethod.DELETE])
     fun deleteIndex(@PathVariable("id")id: String):Any? {
 
         apiSearchServiceI.delete(id = id)
@@ -80,7 +80,7 @@ class ApiSearchController(
     }
 
     // 4. 获取索引
-    @RequestMapping(value = ["/index/{id:\\d+}"], method = [RequestMethod.GET])
+    @RequestMapping(value = ["/index/{id:.+}"], method = [RequestMethod.GET])
     fun get(@PathVariable("id")id: String):Any? {
         return apiSearchServiceI.get(id = id)?: throw SearchIdIsNotExistException()
     }
