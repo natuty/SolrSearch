@@ -1,30 +1,11 @@
 package com.natuty.controller
 
-import com.natuty.entity.Search
-import com.natuty.exception.BusinessException
 import com.natuty.entity.Type
+import com.natuty.exception.SearchIdIsNotExistException
 import com.natuty.service.ApiSearchServiceI
-import org.apache.solr.client.solrj.SolrQuery
-import org.apache.solr.client.solrj.impl.HttpSolrClient
-//import com.natuty.service.*
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.RequestParam
-
-import java.util.ArrayList
-import org.springframework.boot.context.properties.ConfigurationProperties
-import java.io.File
-import org.springframework.web.multipart.MultipartFile
-import org.slf4j.LoggerFactory
-import java.util.regex.Pattern
-import org.apache.solr.common.SolrInputDocument
-import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
-import org.springframework.data.solr.core.query.result.HighlightPage
-import org.springframework.data.solr.core.query.result.SolrResultPage
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import java.lang.Exception
 
 
 @RestController
@@ -35,40 +16,19 @@ class ApiSearchController(
 
     // 1. 添加索引
     @RequestMapping("/addIndex")
-    fun addIndex(id: String, filename: String, text: String): Any {
-        var status = HttpStatus.OK
-        try {
-            apiSearchServiceI.save(id, filename, text)
-        }catch (e: Exception){
-            e.printStackTrace()
-            status = HttpStatus.UNPROCESSABLE_ENTITY
-        }
-
-        return ResponseEntity("", status)
+    fun addIndex(id: String, filename: String, text: String) {
+        apiSearchServiceI.save(id, filename, text)
     }
 
     // 2. 删除索引
     @RequestMapping("/deleteIndex")
-    fun deleteIndex(id: String): Any {
-        var status = HttpStatus.OK
-        try {
-            apiSearchServiceI.delete(id = id)
-        }catch (e: Exception){
-            e.printStackTrace()
-            status = false
-        }
-
-        val rt = hashMapOf(
-                "status" to status
-        )
-        return rt
+    fun deleteIndex(id: String) {
+        apiSearchServiceI.delete(id = id)
     }
 
     // 3. 检索
     @RequestMapping("/searchIndex")
-    fun searchIndex(keyword: String, type:Type, current: Int? = 0, pageSize: Int? = 10): Any {
-        var status = true
-        var pageList: HighlightPage<Search>? = null
+    fun searchIndex(keyword: String, type:Type, current: Int? = 0, pageSize: Int? = 10): Any? {
 
         var cur = (current ?: 0) - 1
         var page = pageSize ?: 10
@@ -76,28 +36,19 @@ class ApiSearchController(
         if (page < 0) page = 10
         else if (page > 560) page = 100
 
-        try {
-            val page = PageRequest(cur, page)
-            when(type){
-                Type.Filename -> { pageList =  apiSearchServiceI.findByFilename(filename = keyword, page = page) }
-                Type.Text -> { pageList =  apiSearchServiceI.findByText(text = keyword, page = page) }
-                Type.FilenameOrText -> { pageList = apiSearchServiceI.findByKeywords(keywords = keyword, page = page)}
-                Type.FilenameAndText -> { pageList = apiSearchServiceI.findByFilenameAndText(filename = keyword, text = keyword, page = page) }
-            }
-        }catch (e: Exception){
-            e.printStackTrace()
-            return hashMapOf("data" to "", "status" to false)
+        val pageRequest = PageRequest(cur, page)
+        val pageList = when(type){
+            Type.Filename -> apiSearchServiceI.findByFilename(filename = keyword, page = pageRequest)
+            Type.Text -> apiSearchServiceI.findByText(text = keyword, page = pageRequest)
+            Type.FilenameOrText -> apiSearchServiceI.findByKeywords(keywords = keyword, page = pageRequest)
+            Type.FilenameAndText -> apiSearchServiceI.findByFilenameAndText(filename = keyword, text = keyword, page = pageRequest)
         }
 
-
-        val highlighted = pageList.highlighted
         var highLightMap: HashMap<String,String> = hashMapOf()
-        highlighted.forEach {
+        pageList.highlighted.forEach {
             var abstract = ""
-            val entity = it.entity
-            val id = entity.id
-            val text = entity.text
-
+            val id = it.entity.id
+            val text = it.entity.text
             val highLights = it.highlights
             if(highLights.size > 0){
                 val snipplets = highLights[0].snipplets
@@ -107,11 +58,7 @@ class ApiSearchController(
             }
 
             if(abstract == ""){
-                if(text.length > 200){
-                    abstract = text.substring(0,200)
-                }else{
-                    abstract = text
-                }
+                abstract = if(text.length > 200) text.substring(0,200) else text
             }
 
             if(!highLightMap.containsKey(id)){
@@ -119,7 +66,7 @@ class ApiSearchController(
             }
         }
 
-        val contentList = pageList.content.map {
+        return pageList.content.map {
             val abstract = highLightMap.get(it.id)?: ""
             hashMapOf(
                     "id" to it.id,
@@ -127,28 +74,11 @@ class ApiSearchController(
                     "abstract" to abstract
             )
         }
-        return hashMapOf(
-                "data" to contentList,
-                "status" to status
-        )
     }
 
-
-    /**
-     * 3. 检索
-     */
-    @RequestMapping("/test")
-    fun searchIndex(id: String): Any {
-        when(id){
-            "1" -> return ResponseEntity(id, HttpStatus.OK)  //[GET]：服务器成功返回用户请求的数据 200
-            "2" -> return ResponseEntity(id, HttpStatus.CREATED) //[POST/PUT/PATCH]：用户新建或修改数据成功 201
-            "3" -> return ResponseEntity(id, HttpStatus.NO_CONTENT)  //[DELETE]：表示数据删除成功 204
-            "4" -> return ResponseEntity(id, HttpStatus.BAD_REQUEST) //[POST/PUT/PATCH]：用户发出的请求有错误
-            "5" -> return ResponseEntity(id, HttpStatus.NOT_FOUND) // [*]：用户发出的请求针对的是不存在的记录
-            "6" -> return ResponseEntity(id, HttpStatus.NOT_ACCEPTABLE) // [*]：用户请求格式不可得
-            "7" -> return ResponseEntity(id, HttpStatus.INTERNAL_SERVER_ERROR) // [*] ：服务器内部发生错误
-            "8" -> return ResponseEntity(id, HttpStatus.UNPROCESSABLE_ENTITY) // [POST/PUT/PATCH]：当创建一个对象时，发生一个验证错误
-            else -> return ResponseEntity(id, HttpStatus.NOT_ACCEPTABLE)
-        }
+    // 4. 获取索引
+    @RequestMapping("/getIndex")
+    fun addIndex(id: String):Any? {
+        return apiSearchServiceI.get(id = id)?: throw SearchIdIsNotExistException()
     }
 }
