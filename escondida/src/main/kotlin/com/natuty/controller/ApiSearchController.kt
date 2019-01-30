@@ -22,6 +22,8 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.solr.core.query.result.HighlightPage
 import org.springframework.data.solr.core.query.result.SolrResultPage
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import java.lang.Exception
 
 
@@ -31,33 +33,24 @@ class ApiSearchController(
         val apiSearchServiceI: ApiSearchServiceI
 ) {
 
-    val log = LoggerFactory.getLogger(this.javaClass)
-
-    /**
-     * 1. 添加索引
-     */
+    // 1. 添加索引
     @RequestMapping("/addIndex")
     fun addIndex(id: String, filename: String, text: String): Any {
-        var status = true
+        var status = HttpStatus.OK
         try {
-            val search = apiSearchServiceI.save(id, filename, text)
+            apiSearchServiceI.save(id, filename, text)
         }catch (e: Exception){
             e.printStackTrace()
-            status = false
+            status = HttpStatus.UNPROCESSABLE_ENTITY
         }
 
-        val rt = hashMapOf(
-                "status" to status
-        )
-        return rt
+        return ResponseEntity("", status)
     }
 
-    /**
-     * 2. 删除索引
-     */
+    // 2. 删除索引
     @RequestMapping("/deleteIndex")
     fun deleteIndex(id: String): Any {
-        var status = true
+        var status = HttpStatus.OK
         try {
             apiSearchServiceI.delete(id = id)
         }catch (e: Exception){
@@ -71,9 +64,7 @@ class ApiSearchController(
         return rt
     }
 
-    /**
-     * 3. 检索
-     */
+    // 3. 检索
     @RequestMapping("/searchIndex")
     fun searchIndex(keyword: String, type:Type, current: Int? = 0, pageSize: Int? = 10): Any {
         var status = true
@@ -140,5 +131,24 @@ class ApiSearchController(
                 "data" to contentList,
                 "status" to status
         )
+    }
+
+
+    /**
+     * 3. 检索
+     */
+    @RequestMapping("/test")
+    fun searchIndex(id: String): Any {
+        when(id){
+            "1" -> return ResponseEntity(id, HttpStatus.OK)  //[GET]：服务器成功返回用户请求的数据 200
+            "2" -> return ResponseEntity(id, HttpStatus.CREATED) //[POST/PUT/PATCH]：用户新建或修改数据成功 201
+            "3" -> return ResponseEntity(id, HttpStatus.NO_CONTENT)  //[DELETE]：表示数据删除成功 204
+            "4" -> return ResponseEntity(id, HttpStatus.BAD_REQUEST) //[POST/PUT/PATCH]：用户发出的请求有错误
+            "5" -> return ResponseEntity(id, HttpStatus.NOT_FOUND) // [*]：用户发出的请求针对的是不存在的记录
+            "6" -> return ResponseEntity(id, HttpStatus.NOT_ACCEPTABLE) // [*]：用户请求格式不可得
+            "7" -> return ResponseEntity(id, HttpStatus.INTERNAL_SERVER_ERROR) // [*] ：服务器内部发生错误
+            "8" -> return ResponseEntity(id, HttpStatus.UNPROCESSABLE_ENTITY) // [POST/PUT/PATCH]：当创建一个对象时，发生一个验证错误
+            else -> return ResponseEntity(id, HttpStatus.NOT_ACCEPTABLE)
+        }
     }
 }
