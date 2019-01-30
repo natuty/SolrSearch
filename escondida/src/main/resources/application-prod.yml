@@ -4,15 +4,10 @@ spring:
   thymeleaf:
     cache: false
   http:
-    multipart:
-      max-file-size: 100M
     encoding:
       force: true
       charset: UTF-8
       enabled: true
-    multipart:
-      max-file-size: 100Mb
-      maxRequestSize: 100Mb
   servlet:
     multipart:
       max-file-size: 100MB

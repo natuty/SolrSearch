@@ -8,9 +8,6 @@ spring:
       force: true
       charset: UTF-8
       enabled: true
-    multipart:
-      max-file-size: 100Mb
-      maxRequestSize: 100Mb
   servlet:
     multipart:
       max-file-size: 100MB
@@ -30,9 +27,6 @@ logging:
     org.springframework.security: ERROR
     org.hibernate: ERROR
     com.natuty: DEBUG
-#solr:
-#  #host: 'http://localhost:8983/solr/core'
-#  host: 'http://localhost:8983/solr'
 debug: true
 
 
