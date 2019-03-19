@@ -28,7 +28,7 @@ http post请求
 
 返回的信息如下
 
-```
+```json
 {
     "status": true
 }
@@ -73,7 +73,7 @@ http post请求
 
 返回的信息如下
 
-```
+```json
 {
   "data" : [
       {
@@ -84,12 +84,12 @@ http post请求
       {
       "type" : guide,
       "id" : 42,
-      "abstract" : ﻿"..."
+      "abstract" : "..."
       },
       {
       "type" : policy,
       "id" : 43,
-      "abstract" : ﻿"...."
+      "abstract" : "...."
       },
   	  ....
   ],
@@ -111,3 +111,16 @@ print(r.text)
 
 
 #  
+
+参考文档
+
+[智能平台数据资源rpc接口说明](https://github.com/fishersosoo/NS_policy_recommendation/blob/feature/docs/%E6%99%BA%E8%83%BD%E5%B9%B3%E5%8F%B0%E6%95%B0%E6%8D%AE%E8%B5%84%E6%BA%90rpc%E6%8E%A5%E5%8F%A3%E8%AF%B4%E6%98%8E.md)
+
+[jsonrpc4j](https://github.com/briandilley/jsonrpc4j)
+
+[Spring Data for Apache Solr](https://docs.spring.io/spring-data/solr/docs/4.1.0.M2/reference/html/#reference)
+
+[docker](https://docs.docker.com/get-started/)
+
+
+
