@@ -23,7 +23,7 @@ form-data
 
 输返回：
 
-```json
+```
 {
     status: "状态"
     message:"和状态相关的提示"
@@ -56,7 +56,7 @@ form-data
 
 输返回：
 
-```json
+```
 {
     status: "状态"
     message:"和状态相关的提示"
@@ -93,7 +93,7 @@ form-data
 
 输返回：
 
-```json
+```
 {
     "task_id": "异步任务id，可以用于更新推荐的新闻",
     "result": [
@@ -108,7 +108,7 @@ form-data
 
 使用company_id进行查询后，可以使用拿到的task_id获取更新后的企业推荐记录。
 
-```json
+```
 {
     "status": "任务状态",
     "result": [
@@ -133,7 +133,7 @@ form-data
 输入：
 
 json格式
-```json
+```
 
 {
     "companies": "企业id1,企业id2,...,企业idn",
@@ -142,7 +142,7 @@ json格式
 }
 ```
 输出：
-```json
+```
 {
     "task_id": "异步任务id",
     "message":
@@ -156,7 +156,7 @@ json格式
 由于计算资源限制，对每个企业计算匹配度的任务会放在任务队列中进行调度，队列长度限制为100。也就是每次最多通过此接口传入100个企业id，等任务完成回调后再次传入下一批企业id。
 
 如果传入企业id数量大于队列剩余长度，则会尽可能放入将企业id放入队列中，剩下未能放入的企业id将会返回到traceback字段中。例子如下
-```json
+```
 {
     "task_id": "任务id", # 如果所有企业都不能放进去则任务id为空
     "message":
@@ -180,7 +180,7 @@ callback接口接受POST请求，请求数据为json格式
 
 输入：
 
-```json
+```
 {
     "task_id":"任务id"
     "guide_id":"指南id",
@@ -201,7 +201,7 @@ callback接口接受POST请求，请求数据为json格式
 
 在系统接到`/policy/check_recommend/`的请求后，会对callback的url进行测试，测试时候会发送如下消息
 
-```json
+```
 {
     "task_id":"test",
     "result":[
@@ -217,7 +217,7 @@ callback应该返回该随机数，以确保callback接口能够正确读取结�
 
 测试不通过则不会将企业id加入队列中，并返回如下消息
 
-```json
+```
 {
     "task_id": "", 
     "message":
