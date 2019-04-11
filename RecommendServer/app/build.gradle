@@ -1,0 +1,58 @@
+plugins {
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.30'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.2.30'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-solr'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //
+    //implementation 'com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.3'
+    implementation "net.logstash.logback:logstash-logback-encoder:4.11"
+    implementation 'org.springframework.boot:spring-boot-starter-data-solr:2.0.0.RELEASE'
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin"){
+        force=true
+    }
+
+    //
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'mysql:mysql-connector-java'
+    //implementation 'org.springframework.ws:spring-ws-core'
+
+    implementation 'com.liferay:org.apache.axis:1.4.LIFERAY-PATCHED-3'
+    implementation 'javax.xml.rpc:javax.xml.rpc-api:1.1.2'
+    implementation 'commons-discovery:commons-discovery:0.5'
+    implementation 'wsdl4j:wsdl4j:1.6.2'
+
+
+}
+
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '1.8'
+    }
+}
