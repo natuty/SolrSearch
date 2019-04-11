@@ -1,5 +1,6 @@
-# RecommendServer
-RecommendServer  新闻资讯、政策、指南推荐
+# 新闻资讯推荐接口说明
+
+RecommendServer  新闻资讯推荐
 
 
 
