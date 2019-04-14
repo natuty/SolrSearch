@@ -32,7 +32,7 @@ dependencies {
 
     //
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    runtimeOnly 'mysql:mysql-connector-java'
+    implementation 'mysql:mysql-connector-java'
     //implementation 'org.springframework.ws:spring-ws-core'
 
     implementation 'com.liferay:org.apache.axis:1.4.LIFERAY-PATCHED-3'

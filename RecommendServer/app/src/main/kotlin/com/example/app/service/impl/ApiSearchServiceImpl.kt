@@ -1,13 +1,12 @@
 package com.example.app.service.impl
 
 import com.example.app.entity.Search
-import com.example.app.entity.repository.SearchRepository
+import com.example.app.entity.solrRepository.SearchRepository
 import com.example.app.service.ApiSearchServiceI
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Page
-import org.springframework.data.solr.core.query.result.HighlightPage
 import org.springframework.transaction.annotation.Transactional
 
 
@@ -38,37 +37,15 @@ class ApiSearchServiceImpl(
         }
     }
 
-    /*override fun findByFilename(filename: String, page: Pageable): HighlightPage<Search>  {
-        return searchRepository.findByFilename(filename, page)
-    }*/
-
-    override fun findByText(text: String, page: Pageable): HighlightPage<Search> {
-        //return searchRepository.findByText(text, page)
-        return searchRepository.findByContent(text, page)
+    override fun findByText(text: String, page: Pageable): Page<Search> {
+        return searchRepository.findByKeywords(text,page)
     }
 
-/*    override fun findByTextAndType(text: String, type: String, page: Pageable): HighlightPage<Search>{
-        return searchRepository.findByTextAndType(text, type, page)
-    }*/
-
-
-
-    /*override fun findByKeywords(keywords: String, page: Pageable): HighlightPage<Search> {
-        return searchRepository.findByKeywords(keywords, page)
-    }
-
-    override fun findByFilenameAndText(filename: String, text: String, page: Pageable): HighlightPage<Search> {
-        return searchRepository.findByFilenameAndText(filename = filename, text = text, page = page)
-    }*/
 
     override fun get(id: String): Search? {
         if(searchRepository.existsById(id)){
             return searchRepository.findById(id).get()
         }
         return null
-    }
-
-    override fun findByContentAndScoreGreaterThan(text: String, score: Float, page: Pageable): Page<Search> {
-        return searchRepository.findByContentAndScoreGreaterThan(text,score, page)
     }
 }

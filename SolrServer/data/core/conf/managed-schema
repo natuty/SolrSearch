@@ -124,6 +124,7 @@
 
 
    <field name="title" type="text_ik" indexed="true" stored="true"/>
+   <field name="type" type="string" stored="true"/>
    <field name="content" type="text_ik" indexed="true" stored="true"/>
    <field name="author" type="text_ik" indexed="true" stored="true" multiValued="true"/>
    <field name="description" type="text_ik" indexed="true" stored="true" multiValued="true"/>

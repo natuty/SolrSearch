@@ -1,8 +1,8 @@
 package com.example.app.dao.impl
 
 import com.example.app.dao.RecommendDaoI
-import com.example.app.entity.Repository.RecommendRepository
 import com.example.app.entity.Recommend
+import com.example.app.entity.mysqlRepository.RecommendRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Component

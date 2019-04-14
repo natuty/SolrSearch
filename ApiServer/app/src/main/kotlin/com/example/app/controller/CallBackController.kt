@@ -3,6 +3,7 @@ package com.example.app.controller
 import com.example.app.client.impl.DataClientServiceImpl
 import com.example.app.entity.Search
 import com.example.app.service.ApiSearchServiceI
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.lang.Exception
@@ -13,7 +14,7 @@ class CallBackController(
         val apiSearchServiceI: ApiSearchServiceI
 ){
 
-    @RequestMapping("/data")
+    @PostMapping("/data")
     fun callback(id: String, event: Event, type: Type):Any? {
         try {
         val text = when(type){
@@ -29,10 +30,10 @@ class CallBackController(
         }
         }catch (e: Exception){
             e.printStackTrace()
-            return hashMapOf("status" to false)
+            return hashMapOf("status" to false, "message" to e.message)
         }
 
-        return hashMapOf("status" to true)
+        return hashMapOf("status" to true, "message" to "")
     }
 
     fun addIndex(id: String, text: String, type: Type){

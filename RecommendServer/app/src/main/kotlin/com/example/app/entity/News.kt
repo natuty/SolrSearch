@@ -17,6 +17,7 @@ data class News(
         @Column()
         var title: String = "",
 
-        @Column()
-        var content: String = ""
+        @Column(columnDefinition = "LONGBLOB")
+        var content: ByteArray = byteArrayOf()
+
 )

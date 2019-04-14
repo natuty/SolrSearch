@@ -8,6 +8,7 @@ import org.apache.solr.client.solrj.beans.Field
 import org.springframework.data.annotation.Id
 import org.springframework.data.solr.core.mapping.Indexed
 import org.springframework.data.solr.core.mapping.SolrDocument
+import org.springframework.data.solr.repository.Score
 
 /**
  * @author cbf
@@ -22,7 +23,10 @@ data class Search(
         var text: String,
 
         @Indexed(TEXT_FIELD_TYPE)
-        var type: String
+        var type: String,
+
+        @Score
+        var score: Float = 0.0f
 
 ): SearchInterface
 

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  recommendserver:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: local/recommendserver:latest
+    ports:
+     - "9002:9002"
+    networks:
+      - webnet
+networks:
+  webnet:

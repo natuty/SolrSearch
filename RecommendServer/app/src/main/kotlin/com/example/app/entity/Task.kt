@@ -15,9 +15,15 @@ data class Task(
         var matching: Float = 0.0f ,
 
         @Column()
-        var isCompleted: Boolean = false,
+        var callbackUrl: String = "",
 
         @Column()
-        var callbackUrl: String = ""
+        var status: TaskStatus = TaskStatus.UnCompleted
 
 )
+
+enum class TaskStatus(val remark: String) {
+        Completed("完成"),
+        Fail("失败"),
+        UnCompleted("未完成")
+}
