@@ -9,5 +9,11 @@ interface ApiSearchServiceI{
     fun save(search: Search): Search?
     fun delete(id: String)
     fun get(id: String):Search?
-    fun findByText(text: String, page: Pageable): Page<Search>
+    fun findByText(text: String, page: Pageable): HighlightPage<Search>
+    fun findByContentAndScoreGreaterThan(text: String, score: Float, page: Pageable): Page<Search>
+    //fun findByTextAndType(text: String, type: String, page: Pageable): HighlightPage<Search>
+
+    /*fun findByFilename(filename: String, page: Pageable): HighlightPage<Search>
+    fun findByKeywords(keywords: String, page: Pageable): HighlightPage<Search>
+    fun findByFilenameAndText(filename: String, text: String, page: Pageable): HighlightPage<Search>*/
 }

@@ -11,6 +11,8 @@ RecommendServer  新闻资讯推荐
 
 添加推荐新闻
 
+测试url: `http://ns.fishersosoo.xyz:3306/news/recommend_news`
+
 ### POST
 
 form-data
@@ -44,6 +46,7 @@ form-data
 
 删除推荐新闻
 
+测试url: `http://ns.fishersosoo.xyz:3306/news/recommend_news`
 
 ### DELETE
 
@@ -70,8 +73,10 @@ form-data
 
 ##  /news/recommend
 
+测试url: `http://ns.fishersosoo.xyz:3306/news/recommend`
 
 ### GET
+
 
 获取给该企业推荐的新闻。
 
@@ -89,6 +94,7 @@ form-data
 | company_id | 社会信用代码   |
 | matching | 匹配度   |
 | task_id | 任务id   |
+| type | policy、guide、news, 默认查找全部类型   |
 
 输返回：
 
@@ -97,7 +103,7 @@ form-data
     "task_id": "异步任务id，可以用于更新推荐的新闻",
     "result": [
         {
-            company_id：[{ newsid:1, matching:0.9, status:"状态信息",time: "推荐时间", type="news"},{ newsid:2, matching:0.9, status:"状态信息",time: "推荐时间" },]
+            company_id：【{ newsid:1, matching:0.9, status:"状态信息",time: "推荐时间", type="news"},{ newsid:2, matching:0.9, status:"状态信息",time: "推荐时间",type="guide" },】
         }
     ]
 }
@@ -112,7 +118,7 @@ form-data
     "status": "任务状态",
     "result": [
         {
-            company_id：[{ newsid:1, matching:0.9, status:"状态信息",time: "推荐时间"},{ newsid:2, matching:0.9, status:"状态信息",time: "推荐时间" },]
+            company_id：【{ newsid:1, matching:0.9, status:"状态信息",time: "推荐时间",type="guide"},{ newsid:2, matching:0.9, status:"状态信息",time: "推荐时间",type="news" },】
         }
     ]
 }
@@ -125,8 +131,12 @@ form-data
 
 ##  /news/checkRecommend
 
+测试url: `http://ns.fishersosoo.xyz:3306/news/checkRecommend`
 
 ### POST
+
+
+
 计算多个企业和所有新闻资讯的匹配情况。此接口针对新闻资讯推送功能。当一个新新闻资讯发布之后，平台在上传新闻资讯信息之后，调用此接口批量获取新新闻资讯与目标企业的匹配情况。匹配情况异步计算，需要提供回调函数url以接受异步任务执行情况。
 
 输入：
@@ -138,6 +148,7 @@ form-data
 | companies | 社会信用代码   |
 | threshold | 匹配度   |
 | callbackUrl | 回调函数url   |
+| type | policy、guide、news, 默认查找全部类型   |
 
 
 json格式
@@ -146,7 +157,8 @@ json格式
 {
     "companies": "企业id1,企业id2,...,企业idn",
     "threshold":"匹配度阈值，只有大于该匹配度的结果才会再callback中返回",
-    "callback": "回调函数url"
+    "callback": "回调函数url",
+    "type": "news"
 }
 ```
 输出：
@@ -194,10 +206,10 @@ callback接口接受POST请求，请求数据为json格式
     "guide_id":"指南id",
     "result":[
       {"data":[
-               {"newsId":"6","matching":37.052},
-               {"newsId":"2","matching":8.85842},
-               ...
-             ],
+            {"newsId":"6","matching":37.052,type="guide"},
+            {"newsId":"2","matching":8.85842,type="news"},
+            ...
+          ],
       "companyId": "91440101717852200L"
       },
       ...
@@ -207,7 +219,7 @@ callback接口接受POST请求，请求数据为json格式
 
 ### callback测试
 
-在系统接到`/policy/check_recommend/`的请求后，会对callback的url进行测试，测试时候会发送如下消息
+在系统接到`/news/check_recommend/`的请求后，会对callback的url进行测试，测试时候会发送如下消息
 
 ```
 {

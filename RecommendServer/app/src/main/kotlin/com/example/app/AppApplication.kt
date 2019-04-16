@@ -9,10 +9,10 @@ import org.springframework.data.solr.repository.config.EnableSolrRepositories
 import org.springframework.scheduling.annotation.EnableScheduling
 
 @SpringBootApplication(scanBasePackages = arrayOf("com.example.app"))
-@EnableSolrRepositories(basePackages = arrayOf( "com.example.app.entity.solrRepository"))
+@EnableSolrRepositories(basePackages = arrayOf( "com.example.app"))
 @EntityScan(basePackages = arrayOf( "com.example.app"))
 @ServletComponentScan(basePackages = arrayOf("com.example.app"))
-@EnableJpaRepositories(basePackages = arrayOf("com.example.app.entity.mysqlRepository"))
+@EnableJpaRepositories(basePackages = arrayOf("com.example.app"))
 @EnableScheduling
 class AppApplication
 

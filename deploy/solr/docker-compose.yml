@@ -1,0 +1,21 @@
+version: '3'
+services:
+  solr:
+    build:
+      context: ./solr
+      dockerfile: Dockerfile
+    image: local/mysolr:latest
+    ports:
+     - "8983:8983"
+    volumes:
+      - ./data:/opt/solr/server/solr/mycores
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore
+    networks:
+      - webnet
+networks:
+  webnet:
+volumes:
+  data:

@@ -53,16 +53,14 @@ class SearchController(
             }
         }
 
-        var data =  pageList.content.sortedByDescending { it.score }.map {
+        var data =  pageList.content.map {
             val abstract = highLightMap.get(it.id)?: ""
             hashMapOf(
                     "id" to it.id.substring(1),
                     "type" to it.type,
-                    "abstract" to abstract,
-                    "score" to it.score
+                    "abstract" to abstract
             )
         }
-
         return hashMapOf(
                 "data" to data,
                 "totalElements" to totalElements,

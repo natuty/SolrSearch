@@ -1,9 +1,8 @@
 package com.example.app.dao.impl
 
 import com.example.app.dao.TaskDaoI
-//import com.example.app.entity.Repository.TaskRepository
+import com.example.app.entity.Repository.TaskRepository
 import com.example.app.entity.Task
-import com.example.app.entity.mysqlRepository.TaskRepository
 import org.springframework.stereotype.Component
 
 @Component
@@ -15,6 +14,7 @@ class TaskDaoImpl(
     }
 
     override fun findByName(name: String): List<Task> {
+        //return taskRepository.findByName(name = name)
         return listOf()
     }
 

@@ -1,0 +1,442 @@
+{
+	"info": {
+		"_postman_id": "66f8abdd-46ff-4163-a6d8-4b7f146de8af",
+		"name": "04.solrSearch(ns.fishersosoo.xyz)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01.apiserver",
+			"description": "",
+			"item": [
+				{
+					"name": "01.callback(event: delete, type: policy)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "40",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "event",
+									"value": "delete",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "guide",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search/data",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search",
+								"data"
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				},
+				{
+					"name": "02.callback(event: add, type: policy)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "40",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "event",
+									"value": "add",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "guide",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search/data",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search",
+								"data"
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				},
+				{
+					"name": "03.callback(event: update, type: policy)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "40",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "event",
+									"value": "update",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "guide",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search/data",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search",
+								"data"
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				},
+				{
+					"name": "04.searchIndex(keyword: String, fileType: FileType, current: Int?, pageSize: Int?): Any?",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search?keyword=促进先进制造业与建筑业发展扶持办法实施细则&fileType=Guide&current=1&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "促进先进制造业与建筑业发展扶持办法实施细则"
+								},
+								{
+									"key": "fileType",
+									"value": "Guide"
+								},
+								{
+									"key": "current",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02.recommendserver",
+			"description": "",
+			"item": [
+				{
+					"name": "01.recommend_news(add news)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "news_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "广州南沙",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "update hibernate_sequence set next_val= ? where next_val=?",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend_news",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend_news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02.recommend_news(delete news)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend_news?news_id=1",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend_news"
+							],
+							"query": [
+								{
+									"key": "news_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03.recommend(company_id,matching)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "company_id",
+									"value": "91440101717852200L",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "matching",
+									"value": "0",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04.recommend(task_id)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_id",
+									"value": "247",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05.checkRecommend",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "companies",
+									"value": "1,2,3,4",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "threshold",
+									"value": "0.5",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "callbackUrl",
+									"value": "http://www.baidu.com",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/checkRecommend",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"checkRecommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06.checkRecommend(task_id)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "companies",
+									"value": "1,2,3,4",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "threshold",
+									"value": "0.5",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "callbackUrl",
+									"value": "http://116.56.134.232:9002/test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
