@@ -23,7 +23,7 @@ RecommendServer  新闻资讯推荐
 |news_id |是  |string |id   |
 |title |是  |string | 标题    |
 |content     |是  |string | 内容    |
-|type     |是  |string | news, announce, policy, guide    |
+|type     |是  |string | news, announce, publicity, policy, guide, all    |
 
 
  **返回示例**
@@ -42,6 +42,21 @@ RecommendServer  新闻资讯推荐
 
 
 
+ **备注说明** 
+
+|类型|说明|
+|:-----|----- |
+|news   |政策  |
+|announce   |指南  |
+|publicity   |新闻  |
+|policy   |公告  |
+|guide   |公示  |
+|all   |所有类型  |
+
+
+
+
+
 # 
 
 
@@ -49,6 +64,7 @@ RecommendServer  新闻资讯推荐
 
 2.删除新闻
 --------------
+
 **简要描述：** 
 - 删除推荐新闻,公告
 
@@ -63,7 +79,7 @@ RecommendServer  新闻资讯推荐
 |参数名|必选|类型|说明|
 |:----    |:---|:----- |-----   |
 |news_id |是  |string |id   |
-|type     |是  |string | news, announce, policy, guide, all    |
+|type     |是  |string | news, announce, publicity, policy, guide, all    |
 
 
  **返回示例**
@@ -82,7 +98,9 @@ RecommendServer  新闻资讯推荐
 
 
 
+
 # 
+
 
 
 
@@ -148,6 +166,8 @@ RecommendServer  新闻资讯推荐
 
 
 
+
+
 3.2.根据task_id获取推荐信息
 --------------
 
@@ -206,7 +226,11 @@ RecommendServer  新闻资讯推荐
 
 
 
+
+
 # 
+
+
 
 
 
@@ -230,7 +254,7 @@ RecommendServer  新闻资讯推荐
 |companies |是  |string |社会信用代码列表   |
 |threshold |是  |string | 匹配度    |
 |callbackUrl     |是  |string | 回调函数url    |
-|type     |是  |string | news, announce, policy, guide    |
+|type     |是  |string | news, announce, publicity, policy, guide    |
 
 
  **返回示例**
@@ -323,7 +347,10 @@ RecommendServer  新闻资讯推荐
 
 
 
+
+
 # 
+
 
 
 
@@ -351,6 +378,8 @@ RecommendServer  新闻资讯推荐
 task_id: "test"
 message: ""
 ```
+
+
 
 
 
@@ -388,3 +417,5 @@ message: ""
     "task_id": "123", 
     "message": ""
 }
+
+```
