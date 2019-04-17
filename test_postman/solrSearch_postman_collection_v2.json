@@ -1,0 +1,583 @@
+{
+	"info": {
+		"_postman_id": "e4e48e69-477d-4c48-995c-bfd86c0a01c0",
+		"name": "04.solrSearch(ns.fishersosoo.xyz)_V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "01.apiserver",
+			"description": "",
+			"item": [
+				{
+					"name": "01.callback(event: delete, type: policy)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "40",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "event",
+									"value": "delete",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "guide",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search/data",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search",
+								"data"
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				},
+				{
+					"name": "02.callback(event: add, type: policy)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "40",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "event",
+									"value": "add",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "guide",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search/data",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search",
+								"data"
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				},
+				{
+					"name": "03.callback(event: update, type: policy)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "40",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "event",
+									"value": "update",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "guide",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search/data",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search",
+								"data"
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				},
+				{
+					"name": "04.searchIndex(keyword: String, fileType: FileType, current: Int?, pageSize: Int?): Any?",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/search?keyword=促进先进制造业与建筑业发展扶持办法实施细则&fileType=Guide&current=1&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "促进先进制造业与建筑业发展扶持办法实施细则"
+								},
+								{
+									"key": "fileType",
+									"value": "Guide"
+								},
+								{
+									"key": "current",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						},
+						"description": "01.callback(event: delete, type: policy)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02.recommendserver",
+			"description": "",
+			"item": [
+				{
+					"name": "01.recommend_news(添加新闻)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "news_id",
+									"value": "110",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "广州南沙",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "记者近日从区文明办获悉，今年3月份的“广州好人”的点赞投票活动开始。本月候选“广州好人”的共有5名南沙街坊，其中，敬业奉献类4人，见义勇为类1人，他们分别是：横沥镇的黄建洪(见义勇为)、珠江街的何俊(敬业奉献)、东涌镇的郭锦锡(敬业奉献)、区卫计局的蔡涛恩(敬业奉献)和黄重文(敬业奉献)。　　据悉，本次“广州好人”的点赞投票活动截止至3月22日，每人每天可投50次，欢迎大家为他们点赞投票!共有以下两种投票(点赞)的方式：一是登陆“中国文明网广州站”(gdgz.wenming.cn)，点击主页面右侧“广州好人榜”专题栏目，进入“我推荐、我评议身边好人活动广州好人榜3月候选人事迹展播”页面，选定候选人后，点击“点赞”方框;二是关注“文明广州”微信(wenminggz)，点击“我要参与为好人点赞”",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "news",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend_news",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend_news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "02.recommend_news(添加公告)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "news_id",
+									"value": "111",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "广州南沙-告示",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "记者近日从区文明办获悉，今年3月份的“广州好人”的点赞投票活动开始。本月候选“广州好人”的共有5名南沙街坊，其中，敬业奉献类4人，见义勇为类1人，他们分别是：横沥镇的黄建洪(见义勇为)、珠江街的何俊(敬业奉献)、东涌镇的郭锦锡(敬业奉献)、区卫计局的蔡涛恩(敬业奉献)和黄重文(敬业奉献)。　　据悉，本次“广州好人”的点赞投票活动截止至3月22日，每人每天可投50次，欢迎大家为他们点赞投票!共有以下两种投票(点赞)的方式：一是登陆“中国文明网广州站”(gdgz.wenming.cn)，点击主页面右侧“广州好人榜”专题栏目，进入“我推荐、我评议身边好人活动广州好人榜3月候选人事迹展播”页面，选定候选人后，点击“点赞”方框;二是关注“文明广州”微信(wenminggz)，点击“我要参与为好人点赞”",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "announce",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend_news",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend_news"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "03.recommend_news(删除新闻)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend_news?news_id=1110&type=news",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend_news"
+							],
+							"query": [
+								{
+									"key": "news_id",
+									"value": "1110"
+								},
+								{
+									"key": "type",
+									"value": "news"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "04.recommend_news(删除公告)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend_news?news_id=111&type=announce",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend_news"
+							],
+							"query": [
+								{
+									"key": "news_id",
+									"value": "111"
+								},
+								{
+									"key": "type",
+									"value": "announce"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "05.recommend(company_id,matching)-推荐",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "company_id",
+									"value": "91440101717852200L",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "matching",
+									"value": "0",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "all",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://120.77.182.188:3306/news/recommend",
+							"protocol": "http",
+							"host": [
+								"120",
+								"77",
+								"182",
+								"188"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "06.recommend(task_id)-获取推荐任务结果",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_id",
+									"value": "263",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://120.77.182.188:3306/news/recommend",
+							"protocol": "http",
+							"host": [
+								"120",
+								"77",
+								"182",
+								"188"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "07.checkRecommend-推送",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "companies",
+									"value": "91440101717852200L",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "threshold",
+									"value": "0.5",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "callbackUrl",
+									"value": "http://ns.fishersosoo.xyz:3306/news/test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "announce",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/checkRecommend",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"checkRecommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "08.recommend(task_id)-获取推送结果",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_id",
+									"value": "288",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/recommend",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"recommend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "09.回调接口",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "task_id",
+									"value": "288",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "result",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://ns.fishersosoo.xyz:3306/news/callback",
+							"protocol": "http",
+							"host": [
+								"ns",
+								"fishersosoo",
+								"xyz"
+							],
+							"port": "3306",
+							"path": [
+								"news",
+								"callback"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
