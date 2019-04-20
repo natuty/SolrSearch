@@ -18,12 +18,12 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|news_id |是  |string |id   |
-|title |是  |string | 标题    |
-|content     |是  |string | 内容    |
-|type     |是  |string | news, announce, publicity, policy, guide, all    |
+| 参数名     | 必选   | 类型     | 说明                                       |
+| :------ | :--- | :----- | ---------------------------------------- |
+| news_id | 是    | string | id                                       |
+| title   | 是    | string | 标题                                       |
+| content | 是    | string | 内容                                       |
+| type    | 是    | string | news, announce, publicity, policy, guide, all |
 
 
  **返回示例**
@@ -35,23 +35,23 @@ RecommendServer  新闻资讯推荐
 ```
  **返回参数说明** 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|status |boolean   |状态，1：true；2：false  |
-|message |string   |状态信息  |
+| 参数名     | 类型      | 说明                |
+| :------ | :------ | ----------------- |
+| status  | boolean | 状态，1：true；2：false |
+| message | string  | 状态信息              |
 
 
 
  **备注说明** 
 
-|类型|说明|
-|:-----|----- |
-|news   |政策  |
-|announce   |指南  |
-|publicity   |新闻  |
-|policy   |公告  |
-|guide   |公示  |
-|all   |所有类型  |
+| 类型        | 说明   |
+| :-------- | ---- |
+| policy    | 政策   |
+| guide     | 指南   |
+| news      | 新闻   |
+| announce  | 公告   |
+| publicity | 公示   |
+| all       | 所有类型 |
 
 
 
@@ -76,10 +76,10 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|news_id |是  |string |id   |
-|type     |是  |string | news, announce, publicity, policy, guide, all    |
+| 参数名     | 必选   | 类型     | 说明                                       |
+| :------ | :--- | :----- | ---------------------------------------- |
+| news_id | 是    | string | id                                       |
+| type    | 是    | string | news, announce, publicity, policy, guide, all |
 
 
  **返回示例**
@@ -91,10 +91,10 @@ RecommendServer  新闻资讯推荐
 ```
  **返回参数说明** 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|status |boolean   |状态，1：true；2：false  |
-|message |string   |状态信息  |
+| 参数名     | 类型      | 说明                |
+| :------ | :------ | ----------------- |
+| status  | boolean | 状态，1：true；2：false |
+| message | string  | 状态信息              |
 
 
 
@@ -119,11 +119,11 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|company_id |是  |string |社会信用代码   |
-|matching |是  |float | 匹配度    |
-|type     |是  |string | news, announce, policy, guide, all    |
+| 参数名        | 必选   | 类型     | 说明                                 |
+| :--------- | :--- | :----- | ---------------------------------- |
+| company_id | 是    | string | 社会信用代码                             |
+| matching   | 是    | float  | 匹配度                                |
+| type       | 是    | string | news, announce, policy, guide, all |
 
 
  **返回示例**
@@ -159,10 +159,10 @@ RecommendServer  新闻资讯推荐
 
  **返回参数说明** 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|result |   |上一次的推荐记录  |
-|task_id |string   |任务id  |
+| 参数名     | 类型     | 说明       |
+| :------ | :----- | -------- |
+| result  |        | 上一次的推荐记录 |
+| task_id | string | 任务id     |
 
 
 
@@ -182,9 +182,9 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|task_id |是  |string |任务id   |
+| 参数名     | 必选   | 类型     | 说明   |
+| :------ | :--- | :----- | ---- |
+| task_id | 是    | string | 任务id |
 
 
  **返回示例**
@@ -217,11 +217,11 @@ RecommendServer  新闻资讯推荐
 
  **返回参数说明** 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|result |   |任务结果  |
-|status | string  |任务的状态(Completed, UnCompleted, Fail)  |
-|message |string   |状态信息  |
+| 参数名     | 类型     | 说明                                  |
+| :------ | :----- | ----------------------------------- |
+| result  |        | 任务结果                                |
+| status  | string | 任务的状态(Completed, UnCompleted, Fail) |
+| message | string | 状态信息                                |
 
 
 
@@ -249,12 +249,12 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|companies |是  |string |社会信用代码列表   |
-|threshold |是  |string | 匹配度    |
-|callbackUrl     |是  |string | 回调函数url    |
-|type     |是  |string | news, announce, publicity, policy, guide    |
+| 参数名         | 必选   | 类型     | 说明                                       |
+| :---------- | :--- | :----- | ---------------------------------------- |
+| companies   | 是    | string | 社会信用代码列表                                 |
+| threshold   | 是    | string | 匹配度                                      |
+| callbackUrl | 是    | string | 回调函数url                                  |
+| type        | 是    | string | news, announce, publicity, policy, guide |
 
 
  **返回示例**
@@ -269,10 +269,10 @@ RecommendServer  新闻资讯推荐
 ```
  **返回参数说明** 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|task_id |string   |任务id  |
-|message |string   |状态信息  |
+| 参数名     | 类型     | 说明   |
+| :------ | :----- | ---- |
+| task_id | string | 任务id |
+| message | string | 状态信息 |
 
 
 4.2.根据task_id获取推送信息
@@ -289,9 +289,9 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|task_id |是  |string |任务id   |
+| 参数名     | 必选   | 类型     | 说明   |
+| :------ | :--- | :----- | ---- |
+| task_id | 是    | string | 任务id |
 
 
  **返回示例**
@@ -339,11 +339,11 @@ RecommendServer  新闻资讯推荐
 ```
  **返回参数说明** 
 
-|参数名|类型|说明|
-|:-----  |:-----|-----                           |
-|result |   |任务结果  |
-|status | string  |任务的状态(Completed, UnCompleted, Fail)  |
-|message |string   |状态信息  |
+| 参数名     | 类型     | 说明                                  |
+| :------ | :----- | ----------------------------------- |
+| result  |        | 任务结果                                |
+| status  | string | 任务的状态(Completed, UnCompleted, Fail) |
+| message | string | 状态信息                                |
 
 
 
@@ -368,10 +368,10 @@ RecommendServer  新闻资讯推荐
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|task_id |是  |string |任务id   |
-|message |string   |请求信息  |
+| 参数名     | 必选     | 类型     | 说明   |
+| :------ | :----- | :----- | ---- |
+| task_id | 是      | string | 任务id |
+| message | string | 请求信息   |      |
 
  **请求示例**
 ```
@@ -397,10 +397,10 @@ message: ""
 
 **参数：** 
 
-|参数名|必选|类型|说明|
-|:----    |:---|:----- |-----   |
-|task_id |是  |string |任务id   |
-|message |string   |请求信息  |
+| 参数名     | 必选     | 类型     | 说明   |
+| :------ | :----- | :----- | ---- |
+| task_id | 是      | string | 任务id |
+| message | string | 请求信息   |      |
 
 
  **请求示例**
