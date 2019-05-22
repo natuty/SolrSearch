@@ -24,6 +24,7 @@ RecommendServer  新闻资讯推荐
 | title   | 是    | string | 标题                                       |
 | content | 是    | string | 内容                                       |
 | type    | 是    | string | news, announce, publicity, policy, guide, all |
+| file    | 否    | file | 附件, 支持格式为: pdf, doc, docx |
 
 
  **返回示例**
