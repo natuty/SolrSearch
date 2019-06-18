@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    volumes:
+     - ./htmlHome:/usr/share/nginx/html
+     - ./conf:/etc/nginx/conf.d
+    ports:
+     - "3306:80"
+    command: /bin/bash -c "exec nginx -g 'daemon off;'"
+    networks:
+      - my-net
+networks:
+  my-net:
+    external:
+      name: my-net

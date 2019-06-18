@@ -9,6 +9,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     networks:
-      - webnet
+      - my-net
 networks:
-  webnet:
+  my-net:
+    external:
+      name: my-net

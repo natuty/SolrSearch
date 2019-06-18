@@ -65,3 +65,18 @@ nginx.conf
 
 
 
+南沙生产环境docker安装部署(问题解决)
+----
+主要的问题就是存储驱动的不兼容,可能linux的版本太老了
+```
+停止Docker。
+$ sudo systemctl stop docker
+编辑/etc/docker/daemon.json。如果它尚不存在，请创建它。假设文件为空，请添加以下内容。
+{
+  "storage-driver": "devicemapper"
+}
+
+启动Docker。
+$ sudo systemctl start docker
+```
+

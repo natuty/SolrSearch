@@ -14,8 +14,10 @@ services:
       - solr-precreate
       - mycore
     networks:
-      - webnet
+      - my-net
 networks:
-  webnet:
+  my-net:
+    external:
+      name: my-net
 volumes:
   data:

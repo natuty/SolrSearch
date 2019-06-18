@@ -7,3 +7,9 @@ services:
     image: local/apiserver:latest
     ports:
      - "9001:9000"
+    networks:
+      - my-net
+networks:
+  my-net:
+    external:
+      name: my-net

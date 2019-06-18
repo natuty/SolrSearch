@@ -8,6 +8,8 @@ services:
     ports:
      - "9002:9002"
     networks:
-      - webnet
+      - my-net
 networks:
-  webnet:
+  my-net:
+    external:
+      name: my-net
