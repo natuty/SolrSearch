@@ -80,3 +80,5 @@ $ sudo systemctl stop docker
 $ sudo systemctl start docker
 ```
 
+
+![](./1.png)
