@@ -4,11 +4,11 @@ RecommendServer  新闻资讯推荐
 
 
 
-1.添加新闻,公告
+1.添加新闻,公告,产业政策
 --------------
 
 **简要描述：** 
-- 添加推荐新闻,公告
+- 添加推荐新闻,公告,产业政策
 
 **请求URL：** 
 - ` http://xxx/news/recommend_news`
@@ -23,7 +23,7 @@ RecommendServer  新闻资讯推荐
 | news_id | 是    | string | id                                       |
 | title   | 是    | string | 标题                                       |
 | content | 是    | string | 内容                                       |
-| type    | 是    | string | news, announce, publicity, policy, guide, all |
+| type    | 是    | string | news, announce, publicity, policy, guide |
 | files    | 否    | file | 附件, 支持格式为: pdf, doc, docx, zip, rar, xls, xlsx, ppt, txt |
 
 
@@ -48,12 +48,11 @@ RecommendServer  新闻资讯推荐
 
 | 类型        | 说明   |
 | :-------- | ---- |
-| policy    | 政策   |
+| policy    | 产业政策   |
 | guide     | 指南   |
 | news      | 新闻   |
 | announce  | 公告   |
 | publicity | 公示   |
-| all       | 所有类型 |
 
 
 
@@ -68,7 +67,7 @@ RecommendServer  新闻资讯推荐
 --------------
 
 **简要描述：** 
-- 删除推荐新闻,公告
+- 删除推荐新闻,公告,产业政策
 
 **请求URL：** 
 - ` http://xxx/news/recommend_news`
@@ -81,7 +80,7 @@ RecommendServer  新闻资讯推荐
 | 参数名     | 必选   | 类型     | 说明                                       |
 | :------ | :--- | :----- | ---------------------------------------- |
 | news_id | 是    | string | id                                       |
-| type    | 是    | string | news, announce, publicity, policy, guide, all |
+| type    | 是    | string | news, announce, publicity, policy, guide |
 
 
  **返回示例**
@@ -125,7 +124,7 @@ RecommendServer  新闻资讯推荐
 | :--------- | :--- | :----- | ---------------------------------- |
 | company_id | 是    | string | 社会信用代码                             |
 | matching   | 是    | float  | 匹配度                                |
-| type       | 是    | string | news, announce, policy, guide, all |
+| type       | 是    | string | news, announce, policy, guide |
 
 
  **返回示例**
@@ -421,3 +420,46 @@ message: ""
 }
 
 ```
+
+
+
+
+
+
+6.新闻资讯点击
+--------------
+**简要描述：** 
+- 新闻资讯点击
+
+**请求URL：** 
+- ` http://xxx/news/click`
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+| 参数名     | 必选     | 类型     | 说明   |
+| :------ | :----- | :----- | ---- |
+| company_id | 是      | string | 社会信用代码 |
+| news_id | 是    | string | id                                       |
+| type       | 是    | string | news, announce |
+
+
+**请求示例**
+```
+{
+    "company_id": "91440101717852200L", 
+    "news_id": "123",
+    "type": "news"
+}
+```
+
+**返回示例**
+```
+{
+    "status": true,
+    "message": "success"
+}
+```
+
