@@ -4,11 +4,11 @@ RecommendServer  新闻资讯推荐
 
 
 
-1.添加新闻,公告,产业政策
+1.添加新闻,公告,支撑政策
 --------------
 
 **简要描述：** 
-- 添加推荐新闻,公告,产业政策
+- 添加推荐新闻,公告,支撑政策
 
 **请求URL：** 
 - ` http://xxx/news/recommend_news`
@@ -48,7 +48,7 @@ RecommendServer  新闻资讯推荐
 
 | 类型        | 说明   |
 | :-------- | ---- |
-| policy    | 产业政策   |
+| policy    | 支撑政策   |
 | guide     | 指南   |
 | news      | 新闻   |
 | announce  | 公告   |
@@ -67,7 +67,7 @@ RecommendServer  新闻资讯推荐
 --------------
 
 **简要描述：** 
-- 删除推荐新闻,公告,产业政策
+- 删除推荐新闻,公告,支撑政策
 
 **请求URL：** 
 - ` http://xxx/news/recommend_news`
