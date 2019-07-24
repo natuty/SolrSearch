@@ -10,7 +10,6 @@ import java.net.MalformedURLException
 import org.apache.solr.client.solrj.SolrClient
 import org.slf4j.LoggerFactory
 import org.springframework.data.solr.core.SolrTemplate
-//import org.springframework.ws.soap.saaj.SaajSoapMessageFactory
 
 
 @Configuration
@@ -22,7 +21,6 @@ class SolrConfig(
     @Bean
     @Throws(MalformedURLException::class, IllegalStateException::class)
     fun solrClient(): SolrClient {
-        //return HttpSolrClient.Builder(env.getRequiredProperty("spring.solr.host")).build()
         return HttpSolrClient(env.getRequiredProperty("spring.solr.host"))
     }
 
@@ -30,12 +28,4 @@ class SolrConfig(
     fun solrTemplate(solrClient: SolrClient): SolrTemplate{
         return SolrTemplate(solrClient)
     }
-
-/*    @Bean
-    fun messageFactory():SaajSoapMessageFactory{
-        return SaajSoapMessageFactory()
-    }*/
-
-
-
 }

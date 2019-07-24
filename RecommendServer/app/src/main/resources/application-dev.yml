@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    active: dev #开发环境
+  datasource:
+    url: jdbc:mysql://116.56.134.191:3308/news_recommend?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 200MB
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  solr:
+    host: 'http://116.56.134.191:8983/solr'
+  redis:
+    database: 0
+    host: 116.56.134.191
+    password: 123456
+    ssl: false
+    port: 6379
+  rabbitmq:
+    host: 116.56.134.191
+    port: 5672
+    username: guest
+    password: guest
+
+recommend:
+  data:
+    targetEndpointAddress: 'http://47.106.70.192/webService/services/ws?wsdl'
+    token: 'F30FD00E373FD16544C308A6BD5CFDE2'
+    operationName: 'getParamInfo'
+  click:
+    itemLogSize: 10 #新闻点击记录的条数
+    itemEachKeywordSize: 10
+    itemAllKeywordSize: 100 #新闻点击记录的数据库中的KeywordSize
+    itemSearchKeywordSize: 5
+
+server:
+  port: 9002
+  tomcat:
+    accesslog:
+      enabled: true
+    protocol-header: x-forwarded-proto
+    remote-ip-header: x-forwarded-for
+    uri-encoding: utf-8
+logging:
+  level:
+    org.springframework.web: ERROR
+    org.springframework.security: ERROR
+    org.hibernate: ERROR
+    com.example.app: DEBUG
+debug: true

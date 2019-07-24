@@ -1,5 +1,6 @@
 package com.example.app.entity
 
+import com.example.app.controller.Type
 import javax.persistence.*
 
 @Entity
@@ -12,12 +13,21 @@ data class Task(
         var companyIds: String ="",
 
         @Column()
-        var matching: Float = 0.0f ,
+        var matching: Float = 0.0f,
 
         @Column()
-        var isCompleted: Boolean = false,
+        var callbackUrl: String = "",
 
         @Column()
-        var callbackUrl: String = ""
+        var status: TaskStatus = TaskStatus.UnCompleted,
 
-)
+        @Column()
+        var type: Type = Type.all
+
+        )
+
+enum class TaskStatus(val remark: String) {
+        Completed("完成"),
+        Fail("失败"),
+        UnCompleted("未完成")
+}

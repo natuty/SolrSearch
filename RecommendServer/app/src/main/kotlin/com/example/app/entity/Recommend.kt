@@ -1,9 +1,9 @@
 package com.example.app.entity
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import com.example.app.controller.Type
+import java.sql.Blob
+import java.util.*
+import javax.persistence.*
 
 @Entity
 data class Recommend(
@@ -20,9 +20,15 @@ data class Recommend(
         @Column()
         var title: String = "",
 
-        @Column()
-        var content: String = "",
+        @Column(columnDefinition="LONGBLOB")
+        var content: ByteArray = byteArrayOf(),
 
         @Column()
-        var matching: Float = 0.0f
+        var matching: Float = 0.0f,
+
+        @Column()
+        var time: Date = Date(),
+
+        @Column()
+        var type: Type = Type.news
 )

@@ -1,15 +1,15 @@
 package com.example.app.service.impl
 
 import com.example.app.entity.Search
-import com.example.app.entity.repository.SearchRepository
+import com.example.app.entity.solrRepository.SearchRepository
+import com.example.app.helpers.getFileText
 import com.example.app.service.ApiSearchServiceI
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Page
-import org.springframework.data.solr.core.query.result.HighlightPage
 import org.springframework.transaction.annotation.Transactional
-
+import java.io.File
 
 @Service
 @Transactional
@@ -22,7 +22,7 @@ class ApiSearchServiceImpl(
         val id = search.id
         val isExist = searchRepository.existsById(id)
         if(isExist){
-            throw Exception()
+            throw Exception("id already exists")
         }else{
             val search = searchRepository.save(search)
             return search
@@ -34,32 +34,18 @@ class ApiSearchServiceImpl(
         if(isExist){
             searchRepository.deleteById(id)
         }else{
-            throw Exception()
+            throw Exception("delete failed")
         }
     }
 
-    /*override fun findByFilename(filename: String, page: Pageable): HighlightPage<Search>  {
-        return searchRepository.findByFilename(filename, page)
-    }*/
-
-    override fun findByText(text: String, page: Pageable): HighlightPage<Search> {
-        //return searchRepository.findByText(text, page)
-        return searchRepository.findByContent(text, page)
+    override fun findByText(text: String, page: Pageable): Page<Search> {
+        return searchRepository.findByKeywords(text,page)
     }
 
-/*    override fun findByTextAndType(text: String, type: String, page: Pageable): HighlightPage<Search>{
-        return searchRepository.findByTextAndType(text, type, page)
-    }*/
-
-
-
-    /*override fun findByKeywords(keywords: String, page: Pageable): HighlightPage<Search> {
-        return searchRepository.findByKeywords(keywords, page)
+    override fun findByKeywordsAndType(keywords: String, type: String, page: Pageable): Page<Search> {
+        return searchRepository.findByKeywordsAndType(keywords, type, page)
     }
 
-    override fun findByFilenameAndText(filename: String, text: String, page: Pageable): HighlightPage<Search> {
-        return searchRepository.findByFilenameAndText(filename = filename, text = text, page = page)
-    }*/
 
     override fun get(id: String): Search? {
         if(searchRepository.existsById(id)){
@@ -68,7 +54,10 @@ class ApiSearchServiceImpl(
         return null
     }
 
-    override fun findByContentAndScoreGreaterThan(text: String, score: Float, page: Pageable): Page<Search> {
-        return searchRepository.findByContentAndScoreGreaterThan(text,score, page)
+    //获取文件文本 pdf. doc. zip  rar  excel
+    override fun getTextFromFile(file: File): String{
+        return getFileText(file)
     }
 }
+
+
