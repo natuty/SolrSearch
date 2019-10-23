@@ -463,3 +463,42 @@ message: ""
 }
 ```
 
+
+7.不感兴趣按钮
+--------------
+**简要描述：** 
+- 不感兴趣按钮
+
+**请求URL：** 
+- ` http://xxx/news/uninterested`
+
+**请求方式：**
+- POST 
+
+**参数：** 
+
+| 参数名     | 必选     | 类型     | 说明   |
+| :------ | :----- | :----- | ---- |
+| company_id | 是      | string | 社会信用代码 |
+| news_id | 是    | string | id                                       |
+| type       | 是    | string | news, announce, publicity, policy |
+
+
+**请求示例**
+```
+{
+    "company_id": "91440101717852200L", 
+    "news_id": "123",
+    "type": "news"
+}
+```
+
+**返回示例**
+```
+{
+    "status": true,
+    "message": "success"
+}
+```
+
+
